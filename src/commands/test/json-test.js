@@ -1,4 +1,8 @@
-import { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } from "discord.js";
+import {
+  SlashCommandBuilder,
+  EmbedBuilder,
+  PermissionFlagsBits,
+} from "discord.js";
 import ms from "ms";
 import logger from "../../util/logger.js";
 import errorEmbed from "../../components/embeds/error.js";

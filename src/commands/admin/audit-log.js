@@ -5,7 +5,7 @@ import logger from "../../util/logger.js";
 import errorEmbed from "../../components/embeds/error.js";
 
 export default {
-  developer: true,
+  developer: false,
   cooldown: ms("5s"),
   data: new SlashCommandBuilder()
     .setName("audit-log-setup")

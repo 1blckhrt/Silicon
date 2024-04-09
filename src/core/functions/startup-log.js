@@ -1,5 +1,14 @@
 import { Listener } from "@sapphire/framework";
-import { green, blue, magenta, cyan, red, yellow, magentaBright, white } from "colorette";
+import {
+  green,
+  blue,
+  magenta,
+  cyan,
+  red,
+  yellow,
+  magentaBright,
+  white,
+} from "colorette";
 import os from "os";
 import mongoose from "mongoose";
 
@@ -32,68 +41,84 @@ class UserEvent extends Listener {
     const dbConnected = await this._connectDb();
     this._printBanner(dbConnected);
     this._displayAdvancedConsole();
-    
-  }
-
-  
-	/**
-	 *
-	 * @returns {Promise<boolean>}
-	 */
-	async _connectDb() {
-		const mongoUrl = process.env.MONGO_DB;
-
-		if (!mongoUrl) return false;
-
-		try {
-			await mongoose.connect(mongoUrl, {
-			});
-			return true;
-		} catch (error) {
-			return false;
-    }
-
   }
 
   /**
-	 *
-	 * @param {boolean} dbConnected Whether or nor the db was connected
-	 */
-	_printBanner(dbConnected) {
-		const success = green('+');
-		const fail = red('-');
+   *
+   * @returns {Promise<boolean>}
+   */
+  async _connectDb() {
+    const mongoUrl = process.env.MONGO_DB;
 
-		const llc = dev ? magentaBright : white;
-		const blc = dev ? magenta : blue;
-		const db = dbConnected ? `[${success}] Mongo Connected` : `[${fail}] Mongo Not Connected`;
+    if (!mongoUrl) return false;
 
-		const line01 = llc(String.raw`░██████╗██╗██╗░░░░░██╗░█████╗░░█████╗░███╗░░██╗`);
-		const line02 = llc(String.raw`██╔════╝██║██║░░░░░██║██╔══██╗██╔══██╗████╗░██║`);
-		const line03 = llc(String.raw`╚█████╗░██║██║░░░░░██║██║░░╚═╝██║░░██║██╔██╗██║`);
-		const line04 = llc(String.raw`░╚═══██╗██║██║░░░░░██║██║░░██╗██║░░██║██║╚████║`);
-		const line05 = llc(String.raw`██████╔╝██║███████╗██║╚█████╔╝╚█████╔╝██║░╚███║`);
-		const line06 = llc(String.raw`╚═════╝░╚═╝╚══════╝╚═╝░╚════╝░░╚════╝░╚═╝░░╚══╝`);
+    try {
+      await mongoose.connect(mongoUrl, {});
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
 
-		// Offset Pad
-		const pad = ' '.repeat(7);
+  /**
+   *
+   * @param {boolean} dbConnected Whether or nor the db was connected
+   */
+  _printBanner(dbConnected) {
+    const success = green("+");
+    const fail = red("-");
 
-		console.clear();
-		console.log(
-			String.raw`
+    const llc = dev ? magentaBright : white;
+    const blc = dev ? magenta : blue;
+    const db = dbConnected
+      ? `[${success}] Mongo Connected`
+      : `[${fail}] Mongo Not Connected`;
+
+    const line01 = llc(
+      String.raw`░██████╗██╗██╗░░░░░██╗░█████╗░░█████╗░███╗░░██╗`
+    );
+    const line02 = llc(
+      String.raw`██╔════╝██║██║░░░░░██║██╔══██╗██╔══██╗████╗░██║`
+    );
+    const line03 = llc(
+      String.raw`╚█████╗░██║██║░░░░░██║██║░░╚═╝██║░░██║██╔██╗██║`
+    );
+    const line04 = llc(
+      String.raw`░╚═══██╗██║██║░░░░░██║██║░░██╗██║░░██║██║╚████║`
+    );
+    const line05 = llc(
+      String.raw`██████╔╝██║███████╗██║╚█████╔╝╚█████╔╝██║░╚███║`
+    );
+    const line06 = llc(
+      String.raw`╚═════╝░╚═╝╚══════╝╚═╝░╚════╝░░╚════╝░╚═╝░░╚══╝`
+    );
+
+    // Offset Pad
+    const pad = " ".repeat(7);
+
+    console.clear();
+    console.log(
+      String.raw`
 ${line01}
 ${line02}
-${line03} ${pad}${blc('1.0.0')}
+${line03} ${pad}${blc("1.0.0")}
 ${line04} ${pad}[${success}] Gateway
 ${line05} ${pad}${db}
-${line06}${dev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
+${line06}${
+        dev
+          ? ` ${pad}${blc("<")}${llc("/")}${blc(">")} ${llc(
+              "DEVELOPMENT MODE"
+            )}`
+          : ""
+      }
 		`.trim()
-		);
-	}
+    );
+  }
 
   _displayAdvancedConsole() {
     const client = this.container.client;
 
-    const commandCount = client.commands.size
+    const commandCount = client.commands.size;
     const totalMembers = client.guilds.cache.reduce(
       (acc, guild) => acc + guild.memberCount,
       0
@@ -115,7 +140,9 @@ ${line06}${dev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MO
         )} MB`
       )
     );
-    console.log(cyan(`Total RAM: ${Math.round(os.totalmem() / 1024 / 1024)} MB`));
+    console.log(
+      cyan(`Total RAM: ${Math.round(os.totalmem() / 1024 / 1024)} MB`)
+    );
     console.log(green(`CPU: ${os.cpus()[0].model}`));
     console.log(red(`Bot's Founders: ${botOwner}`));
     console.log(blue("=================================="));

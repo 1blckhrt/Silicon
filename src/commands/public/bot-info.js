@@ -12,9 +12,9 @@ export default {
     try {
       const icon = `${client.user.displayAvatarURL()}`;
       const embed = new EmbedBuilder()
-        .setTitle("Bot Information")
+        .setTitle(":robot: Bot Information")
         .setDescription("Here is some information about the bot.")
-        .setColor("Red")
+        .setColor("Green")
         .addFields({
           name: "Bot Name",
           value: `${client.user.username}`,
