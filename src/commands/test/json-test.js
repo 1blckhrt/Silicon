@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
+import { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } from "discord.js";
 import ms from "ms";
 import logger from "../../util/logger.js";
 import errorEmbed from "../../components/embeds/error.js";
@@ -10,6 +10,7 @@ export default {
   data: new SlashCommandBuilder()
     .setName("json-test")
     .setDescription("Tests the JSON database.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addStringOption((option) =>
       option
         .setName("test")

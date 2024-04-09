@@ -8,3 +8,4 @@
 ## Important information
 - this project uses ES6 modules, NOT require
 - this project uses two separate databases, ArrowmentDB (JSON database) and MongoDB. 
+- start with `node .`, Nodemon won't work if you use ArrowmentDB
