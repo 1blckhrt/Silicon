@@ -1,0 +1,22 @@
+{
+    "name": "Silicon",
+    "commandSetup": {
+        "globalCommands": true,
+        "guildId": "Set a guild if you set globalCommands to false"
+    },
+    "developers": {
+        "username": ["blckhrt"],
+        "id": ["800222752572702731"]
+    },
+    "messageConfig": {
+        "globalEmojis": {
+            "cross": "❌",
+            "tick": "✔",
+            "generating": "🌟",
+            "loading": "🔃",
+            "warning": "⚠",
+            "security": "🔐"
+        },
+        "default_prefix": "!"
+    }
+}
