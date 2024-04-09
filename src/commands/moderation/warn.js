@@ -1,7 +1,7 @@
 import {
   SlashCommandBuilder,
   EmbedBuilder,
-  PermissionFlagsBits
+  PermissionFlagsBits,
 } from "discord.js";
 import ms from "ms";
 import logger from "../../util/logger.js";
@@ -16,6 +16,7 @@ export default {
     .setName("warn")
     .setDescription("Warns a user.")
     .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
+    .setDMPermission(false)
     .addUserOption((option) =>
       option
         .setName("user")
@@ -35,10 +36,16 @@ export default {
       const reason = interaction.options.getString("reason");
       const userMember = await interaction.guild.members.fetch(user);
 
-      if (user.id === interaction.user.id || client.user.id === user.id || userMember.permissions.has(PermissionFlagsBits.KickMembers)) { 
+      if (
+        user.id === interaction.user.id ||
+        client.user.id === user.id ||
+        userMember.permissions.has(PermissionFlagsBits.KickMembers)
+      ) {
         const embed = new EmbedBuilder()
           .setTitle("❌ Invalid User")
-          .setDescription("You cannot warn yourself, the bot or a user with the `Kick Members` permission.")
+          .setDescription(
+            "You cannot warn yourself, the bot or a user with the `Kick Members` permission."
+          )
           .setColor("Red")
           .setThumbnail(`${icon}`)
           .setTimestamp()
@@ -49,7 +56,7 @@ export default {
 
         return await interaction.reply({ embeds: [embed], ephemeral: true });
       }
-      
+
       await warn.create({
         userId: user.id,
         moderatorId: interaction.user.id,
@@ -75,7 +82,7 @@ export default {
           },
           {
             name: "Amount of Warnings",
-            value: `${warningCount}`
+            value: `${warningCount}`,
           }
         )
         .setTimestamp()
@@ -91,26 +98,32 @@ export default {
         .setDescription(`Successfully warned ${user.tag}.`)
         .setColor("Green")
         .setThumbnail(`${icon}`)
-        .addFields({
-          name: "Reason",
-          value: `${reason}`,
-        },
-        {
-          name: "Amount of Warnings",
-          value: `${warningCount}`
-        })
+        .addFields(
+          {
+            name: "Reason",
+            value: `${reason}`,
+          },
+          {
+            name: "Amount of Warnings",
+            value: `${warningCount}`,
+          }
+        )
         .setTimestamp()
         .setFooter({
           text: `Warned by ${interaction.user.tag}`,
           iconURL: interaction.user.displayAvatarURL(),
         });
 
-      await interaction.reply({ embeds: [finishEmbed], ephemeral: true});
+      await interaction.reply({ embeds: [finishEmbed], ephemeral: true });
 
-      const result = await auditLogSchema.findData({ guildId: interaction.guild.id });
+      const result = await auditLogSchema.findData({
+        guildId: interaction.guild.id,
+      });
 
       if (result && result.auditLogChannel) {
-        const auditLog = await interaction.guild.channels.cache.get(result.auditLogChannel);
+        const auditLog = await interaction.guild.channels.cache.get(
+          result.auditLogChannel
+        );
         const auditEmbed = new EmbedBuilder()
           .setTitle("⚠️ Warn")
           .setDescription(`${user.tag} has been warned.`)
@@ -132,7 +145,7 @@ export default {
             },
             {
               name: "Amount of Warnings",
-              value: `${warningCount}`
+              value: `${warningCount}`,
             }
           )
           .setTimestamp()
@@ -146,7 +159,7 @@ export default {
     } catch (error) {
       logger.error(error);
       const embed = errorEmbed(client, interaction, error);
-      await interaction.reply({ embeds: [embed], ephemeral: true});
+      await interaction.reply({ embeds: [embed], ephemeral: true });
     }
   },
 };

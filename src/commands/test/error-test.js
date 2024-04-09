@@ -8,6 +8,7 @@ export default {
   data: new SlashCommandBuilder()
     .setName("error-test")
     .setDescription("Tests the error embed.")
+    .setDMPermission(false)
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction, client) {
     const error = new Error("This is a test error.");

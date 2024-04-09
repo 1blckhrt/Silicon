@@ -15,6 +15,7 @@ export default {
     .setName("json-test")
     .setDescription("Tests the JSON database.")
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+    .setDMPermission(false)
     .addStringOption((option) =>
       option
         .setName("test")

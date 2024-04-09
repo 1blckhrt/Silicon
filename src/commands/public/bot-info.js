@@ -7,7 +7,8 @@ export default {
   cooldown: ms("5s"),
   data: new SlashCommandBuilder()
     .setName("bot-info")
-    .setDescription("Displays information about the bot."),
+    .setDescription("Displays information about the bot.")
+    .setDMPermission(false),
   async execute(interaction, client) {
     try {
       const icon = `${client.user.displayAvatarURL()}`;

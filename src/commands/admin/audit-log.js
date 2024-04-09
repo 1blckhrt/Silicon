@@ -10,6 +10,7 @@ export default {
   data: new SlashCommandBuilder()
     .setName("audit-log-setup")
     .setDescription("Sets up the audit log.")
+    .setDMPermission(false)
     .addChannelOption((option) =>
       option
         .setName("channel")
