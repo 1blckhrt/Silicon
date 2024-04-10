@@ -2,6 +2,8 @@ import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 import ms from "ms";
 import errorEmbed from "../../components/embeds/error.js";
 import os from "os";
+import logger from "../../util/logger.js";
+
 export default {
   developer: false,
   cooldown: ms("5s"),

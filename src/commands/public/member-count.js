@@ -26,7 +26,7 @@ export default {
           iconURL: interaction.user.displayAvatarURL(),
         })
         .setThumbnail(`${icon}`);
-      await interaction.reply({ embeds: [embed] });
+      await interaction.reply({ embeds: [embed], ephemeral: true });
     } catch (error) {
       logger.error(error);
       const embed = errorEmbed(client, interaction, error);
