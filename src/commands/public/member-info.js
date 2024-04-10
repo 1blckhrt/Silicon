@@ -51,7 +51,8 @@ export default {
             .map((role) => `<@&${role.id}>`)
             .join(", ")}`,
           inline: true,
-        });
+        })
+        .setThumbnail(`${icon}`);
       await interaction.reply({ embeds: [embed] });
     } catch (error) {
       logger.error(error);

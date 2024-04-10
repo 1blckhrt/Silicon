@@ -10,7 +10,7 @@ import warn from "../../core/system/database/mongodb/schema/warn.js";
 import { auditLogSchema } from "../../core/system/database/arrowmentdb/schema/audit-log.js";
 
 export default {
-  developer: true,
+  developer: false,
   cooldown: ms("5s"),
   data: new SlashCommandBuilder()
     .setName("warn")
@@ -108,7 +108,8 @@ export default {
         .setFooter({
           text: `Warned by ${interaction.user.tag}`,
           iconURL: interaction.user.displayAvatarURL(),
-        });
+        })
+        .setThumbnail(`${icon}`);
 
       await interaction.reply({ embeds: [finishEmbed], ephemeral: true });
 

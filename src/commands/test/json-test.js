@@ -70,7 +70,8 @@ export default {
         .setFooter({
           text: `Requested by ${interaction.user.tag}`,
           iconURL: interaction.user.displayAvatarURL(),
-        });
+        })
+        .setThumbnail(`${icon}`);
 
       return await interaction.reply({ embeds: [finishEmbed] });
     } catch (error) {

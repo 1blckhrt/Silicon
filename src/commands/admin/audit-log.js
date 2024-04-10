@@ -36,7 +36,7 @@ export default {
           text: `Requested by ${interaction.user.tag}`,
           iconURL: interaction.user.displayAvatarURL(),
         })
-        .setThumbnail(icon);
+        .setThumbnail(`${icon}`);
 
       await interaction.reply({ embeds: [embed2], ephemeral: true });
     } catch (error) {

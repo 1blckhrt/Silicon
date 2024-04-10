@@ -24,7 +24,8 @@ export default {
         .setFooter({
           text: `Requested by ${interaction.user.tag}`,
           iconURL: interaction.user.displayAvatarURL(),
-        });
+        })
+        .setThumbnail(`${icon}`);
       await interaction.reply({ embeds: [embed] });
     } catch (error) {
       logger.error(error);
