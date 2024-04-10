@@ -48,11 +48,7 @@ export default {
           )
           .setColor("Red")
           .setThumbnail(`${icon}`)
-          .setTimestamp()
-          .setFooter({
-            text: `Warned by ${interaction.user.tag}`,
-            iconURL: interaction.user.displayAvatarURL(),
-          });
+          .setTimestamp();
 
         return await interaction.reply({ embeds: [embed], ephemeral: true });
       }

@@ -28,8 +28,21 @@ export default {
       const user = interaction.options.getUser("user");
       const member = interaction.guild.members.cache.get(user.id);
 
-      if (!member) {
-        throw new Error("User is not a member of this server.");
+      if (
+        user.id === interaction.user.id ||
+        client.user.id === user.id ||
+        userMember.permissions.has(PermissionFlagsBits.KickMembers)
+      ) {
+        const embed = new EmbedBuilder()
+          .setTitle("❌ Invalid User")
+          .setDescription(
+            "You don't have permission to change the nickname of this user."
+          )
+          .setColor("Red")
+          .setThumbnail(`${icon}`)
+          .setTimestamp();
+
+        return await interaction.reply({ embeds: [embed], ephemeral: true });
       }
 
       const nickname = interaction.options.getString("nickname");
