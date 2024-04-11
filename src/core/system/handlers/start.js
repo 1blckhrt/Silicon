@@ -16,7 +16,7 @@ async function start() {
     await userEvent.run();
     logger.success(` Logged in as ${client.user.tag}!`);
   } catch (err) {
-    logger.error(`FATAL ERROR: ${err.message}`);
+    console.log(err);
   }
 }
 

@@ -1,4 +1,8 @@
-import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
+import {
+  SlashCommandBuilder,
+  EmbedBuilder,
+  PermissionFlagsBits,
+} from "discord.js";
 import ms from "ms";
 import { auditLogSchema } from "../../core/system/database/arrowmentdb/schema/audit-log.js";
 import logger from "../../util/logger.js";
@@ -10,6 +14,7 @@ export default {
   data: new SlashCommandBuilder()
     .setName("audit-log-setup")
     .setDescription("Sets up the audit log.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .setDMPermission(false)
     .addChannelOption((option) =>
       option
