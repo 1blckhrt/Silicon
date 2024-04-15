@@ -84,12 +84,12 @@ module.exports = {
           })
           .setThumbnail(`${icon}`);
 
-        await auditLog.send({ embeds: [logEmbed] });
+        return await auditLog.send({ embeds: [logEmbed] });
       }
     } catch (error) {
       logger.error(error);
       const embed = errorEmbed(client, interaction, error);
-      await interaction.reply({ embeds: [embed], ephemeral: true });
+      return await interaction.reply({ embeds: [embed], ephemeral: true });
     }
   },
 };

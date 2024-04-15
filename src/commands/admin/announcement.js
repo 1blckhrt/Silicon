@@ -90,14 +90,14 @@ module.exports = {
           iconURL: interaction.user.displayAvatarURL(),
         });
 
-      await interaction.reply({
+      return await interaction.reply({
         embeds: [successEmbed],
         ephemeral: true,
       });
     } catch (error) {
       logger.error(error);
       const embed = errorEmbed(client, interaction, error);
-      await interaction.reply({ embeds: [embed] });
+      return await interaction.reply({ embeds: [embed] });
     }
   },
 };

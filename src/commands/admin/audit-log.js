@@ -45,11 +45,11 @@ module.exports = {
         })
         .setThumbnail(`${icon}`);
 
-      await interaction.reply({ embeds: [embed2], ephemeral: true });
+      return await interaction.reply({ embeds: [embed2], ephemeral: true });
     } catch (error) {
       logger.error(error);
       const embed = errorEmbed(client, interaction, error);
-      await interaction.reply({ embeds: [embed] });
+      return await interaction.reply({ embeds: [embed] });
     }
   },
 };

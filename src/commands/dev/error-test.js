@@ -13,6 +13,6 @@ module.exports = {
   async execute(interaction, client) {
     const error = new Error("This is a test error.");
     const embed = errorEmbed(client, interaction, error);
-    await interaction.reply({ embeds: [embed] });
+    return await interaction.reply({ embeds: [embed] });
   },
 };

@@ -32,7 +32,7 @@ async function validateUser(collection, interaction, client, prefix, args) {
     );
     if (results2) {
       message = `Please wait ${humanize(
-        collectioncooldown
+        collection.cooldown
       )}, before using the command again.`;
     }
   }
