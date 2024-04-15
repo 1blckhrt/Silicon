@@ -1,4 +1,4 @@
-import { config } from "dotenv";
-import start from "./core/system/handlers/start.js";
+const { config } = require("dotenv");
+const start = require("./core/system/handlers/start.js");
 config();
 start();

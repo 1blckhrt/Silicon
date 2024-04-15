@@ -1,6 +1,6 @@
-import ms from "ms";
+const ms = require("ms");
 
-export default {
+module.exports = {
   customId: "test",
   developer: true,
   cooldown: ms("10s"),

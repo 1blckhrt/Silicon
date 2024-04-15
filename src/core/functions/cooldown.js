@@ -1,5 +1,4 @@
-import { CommandInteraction } from "discord.js";
-import client from "../system/client/client.js";
+const client = require("../system/client/client.js");
 
 /**
  * Checks if a user has used a command recently
@@ -13,18 +12,18 @@ async function checkCooldown(interaction, cooldown, message, client) {
   let guildId = interaction.guild.id;
   let userId;
 
-  //If interaction is messageCreate then we need to get the userId differently
+  // If interaction is messageCreate then we need to get the userId differently
   if (message) userId = interaction.author.id;
   else userId = interaction.user.id;
 
-  const cooldownData = client.cooldown.get(userId); //Get the cooldown data from the client.cooldown collection
+  const cooldownData = client.cooldown.get(userId); // Get the cooldown data from the client.cooldown collection
 
   if (cooldownData) {
     const lastUsed = cooldownData.LastUsed;
     const subtraction = Date.now() - lastUsed;
 
     if (subtraction > cooldown) {
-      client.cooldown.delete(userId); //Delete the cooldown data from the client.cooldown collection
+      client.cooldown.delete(userId); // Delete the cooldown data from the client.cooldown collection
 
       return false;
     } else return true;
@@ -34,8 +33,8 @@ async function checkCooldown(interaction, cooldown, message, client) {
       LastUsed: Date.now(),
     };
 
-    client.cooldown.set(userId, cooldownObject); //Set the cooldown data to client.cooldown collection with key userId
+    client.cooldown.set(userId, cooldownObject); // Set the cooldown data to client.cooldown collection with key userId
   }
 }
 
-export default checkCooldown;
+module.exports = checkCooldown;

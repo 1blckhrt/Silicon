@@ -1,10 +1,12 @@
-import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
-import ms from "ms";
-import logger from "../../util/logger.js";
-import errorEmbed from "../../components/embeds/error.js";
-import { auditLogSchema } from "../../core/system/database/arrowmentdb/schema/audit-log.js";
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const ms = require("ms");
+const logger = require("../../util/logger.js");
+const errorEmbed = require("../../components/embeds/error.js");
+const {
+  auditLogSchema,
+} = require("../../core/system/database/arrowmentdb/schema/audit-log.js");
 
-export default {
+module.exports = {
   developer: false,
   cooldown: ms("5s"),
   data: new SlashCommandBuilder()
@@ -39,7 +41,6 @@ export default {
             "You don't have permission to change the nickname of this user."
           )
           .setColor("Red")
-          .setThumbnail(`${icon}`)
           .setTimestamp();
 
         return await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -68,6 +69,8 @@ export default {
           result.auditLogChannel
         );
 
+        const icon = client.user.displayAvatarURL();
+
         const auditEmbed = new EmbedBuilder()
           .setTitle(":abc: Nickname Changed")
           .addFields(
@@ -85,7 +88,7 @@ export default {
             text: `Nickname changed by ${interaction.user.tag}`,
             iconURL: interaction.user.displayAvatarURL(),
           })
-          .setThumbnail(`${icon}`);
+          .setThumbnail(icon);
 
         await auditLog.send({ embeds: [auditEmbed] });
       }

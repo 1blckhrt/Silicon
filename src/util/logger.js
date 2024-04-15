@@ -1,4 +1,4 @@
-import { inspect } from "node:util";
+const { inspect } = require("util");
 
 const color = {
   red: "\x1b[31m",
@@ -68,4 +68,4 @@ const logger = {
   color,
 };
 
-export default logger;
+module.exports = logger;

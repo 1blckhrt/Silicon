@@ -1,5 +1,5 @@
-import { jsonDB } from "../jsonDB.js";
-import { JsonSchema } from "arrowment-db";
+const { jsonDB } = require("../jsonDB.js");
+const { JsonSchema } = require("../src/classes/JsonSchema");
 
 const data = {
   Name: String,
@@ -8,4 +8,4 @@ const data = {
 
 const info = new JsonSchema({ schema: data, json_class: jsonDB, name: "Info" });
 
-export { info };
+module.exports = { info };

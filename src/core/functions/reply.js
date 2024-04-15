@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
+const { EmbedBuilder, ChatInputCommandInteraction } = require("discord.js");
 
 /**
  *
@@ -13,11 +13,11 @@ async function reply(interaction, emoji, description, ephemeral) {
     embeds: [
       new EmbedBuilder()
         .setDescription(`${emoji} | ${description}`)
-        .setColor("Random")
+        .setColor("RANDOM") // Note: Changed "Random" to "RANDOM"
         .setTimestamp(),
     ],
     ephemeral: ephemeral,
   });
 }
 
-export default reply;
+module.exports = reply;

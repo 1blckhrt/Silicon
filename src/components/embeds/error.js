@@ -1,6 +1,6 @@
-import { EmbedBuilder } from "discord.js";
+const { EmbedBuilder } = require("discord.js");
 
-export default function errorEmbed(client, interaction, error) {
+function errorEmbed(client, interaction, error) {
   const icon = `${client.user.displayAvatarURL()}`;
 
   // Recursive function to extract nested error messages
@@ -30,3 +30,5 @@ export default function errorEmbed(client, interaction, error) {
 
   return embed;
 }
+
+module.exports = errorEmbed;

@@ -1,9 +1,9 @@
-import { ChatInputCommandInteraction, Client } from "discord.js";
-import config from "../../config.json" assert { type: "json" };
-import reply from "../../core/functions/reply.js";
-import validateUser from "../../core/functions/validateUser.js";
+const { Client } = require("discord.js");
+const config = require("../../config.json");
+const reply = require("../../core/functions/reply.js");
+const validateUser = require("../../core/functions/validateUser.js");
 
-export default {
+module.exports = {
   name: "interactionCreate",
 
   /**

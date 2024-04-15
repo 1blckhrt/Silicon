@@ -1,10 +1,10 @@
-import { REST, Routes } from "discord.js";
-import loadCommands from "./load-commands.js";
-import config from "../../../config.json" assert { type: "json" };
-import logger from "../../../util/logger.js";
+const { REST, Routes } = require("discord.js");
+const loadCommands = require("./load-commands.js");
+const config = require("../../../config.json");
+const logger = require("../../../util/logger.js");
 
 async function registerSlashCommand(client) {
-  //Registering the commands
+  // Registering the commands
   const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
   const commands = await loadCommands(client);
 
@@ -19,7 +19,7 @@ async function registerSlashCommand(client) {
       );
     }
 
-    //Command data goes here
+    // Command data goes here
     await rest.put(setup, { body: commands });
   } catch (error) {
     logger.error("Failed to refresh (/) commands");
@@ -27,4 +27,4 @@ async function registerSlashCommand(client) {
   }
 }
 
-export default registerSlashCommand;
+module.exports = registerSlashCommand;

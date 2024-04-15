@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
+const { EmbedBuilder, ChatInputCommandInteraction } = require("discord.js");
 
 /**
  *
@@ -20,4 +20,4 @@ async function editReply(interaction, emoji, description, ephemeral) {
   });
 }
 
-export default editReply;
+module.exports = editReply;

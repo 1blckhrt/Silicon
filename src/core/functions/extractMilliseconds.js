@@ -1,4 +1,4 @@
-import moment from "moment";
+const moment = require("moment");
 
 /**
  * NOTE:
@@ -36,4 +36,4 @@ function extractMilliseconds(input) {
   return null;
 }
 
-export default extractMilliseconds;
+module.exports = extractMilliseconds;

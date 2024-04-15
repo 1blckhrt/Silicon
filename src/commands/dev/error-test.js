@@ -1,8 +1,8 @@
-import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
-import ms from "ms";
-import errorEmbed from "../../components/embeds/error.js";
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const ms = require("ms");
+const errorEmbed = require("../../components/embeds/error.js");
 
-export default {
+module.exports = {
   developer: true,
   cooldown: ms("5s"),
   data: new SlashCommandBuilder()

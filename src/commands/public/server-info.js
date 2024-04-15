@@ -1,9 +1,9 @@
-import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
-import ms from "ms";
-import logger from "../../util/logger.js";
-import errorEmbed from "../../components/embeds/error.js";
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const ms = require("ms");
+const logger = require("../../util/logger.js");
+const errorEmbed = require("../../components/embeds/error.js");
 
-export default {
+module.exports = {
   developer: false,
   cooldown: ms("5s"),
   data: new SlashCommandBuilder()

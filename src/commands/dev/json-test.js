@@ -1,14 +1,16 @@
-import {
+const {
   SlashCommandBuilder,
   EmbedBuilder,
   PermissionFlagsBits,
-} from "discord.js";
-import ms from "ms";
-import logger from "../../util/logger.js";
-import errorEmbed from "../../components/embeds/error.js";
-import { info } from "../../core/system/database/arrowmentdb/schema/test-schema.js";
+} = require("discord.js");
+const ms = require("ms");
+const logger = require("../../util/logger.js");
+const errorEmbed = require("../../components/embeds/error.js");
+const {
+  info,
+} = require("../../core/system/database/arrowmentdb/schema/test-schema.js");
 
-export default {
+module.exports = {
   developer: true,
   cooldown: ms("5s"),
   data: new SlashCommandBuilder()

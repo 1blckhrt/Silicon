@@ -1,4 +1,4 @@
-import config from "../../config.json" assert { type: "json" };
+const config = require("../../config.json");
 
 /**
  * Checks if the user is a developer
@@ -26,4 +26,4 @@ function checkForDeveloper(interaction, message) {
   } else return true;
 }
 
-export default checkForDeveloper;
+module.exports = checkForDeveloper;

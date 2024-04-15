@@ -1,8 +1,8 @@
-import { Events } from "discord.js";
-import logger from "../../util/logger.js";
+const { Events } = require("discord.js");
+const logger = require("../../util/logger.js");
 
-export default {
-  name: Events.InteractionCreate,
+module.exports = {
+  name: Events.INTERACTION_CREATE,
 
   async execute(interaction, client) {
     if (!interaction.isCommand() && !interaction.isAutocomplete()) return;

@@ -1,6 +1,6 @@
-import { Client, Collection } from "discord.js";
-import discordIntents from "./intents.js";
-import discordPartials from "./partials.js";
+const { Client, Collection } = require("discord.js");
+const discordIntents = require("./intents.js");
+const discordPartials = require("./partials.js");
 
 //Constructing the client
 const client = new Client({
@@ -26,4 +26,4 @@ client.components = new Collection();
 client.prefix_commands = new Collection();
 client.cooldown = new Collection();
 
-export default client;
+module.exports = client;

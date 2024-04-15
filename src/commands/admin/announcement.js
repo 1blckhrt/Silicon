@@ -1,13 +1,9 @@
-import {
-  SlashCommandBuilder,
-  EmbedBuilder,
-  PermissionFlagsBits,
-} from "discord.js";
-import ms from "ms";
-import logger from "../../util/logger.js";
-import errorEmbed from "../../components/embeds/error.js";
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const ms = require("ms");
+const logger = require("../../util/logger.js");
+const errorEmbed = require("../../components/embeds/error.js");
 
-export default {
+module.exports = {
   developer: false,
   cooldown: ms("5s"),
   data: new SlashCommandBuilder()
@@ -64,6 +60,8 @@ export default {
       const color = interaction.options.getString("color");
       const title = interaction.options.getString("title");
       const description = interaction.options.getString("description");
+
+      const { EmbedBuilder } = require("discord.js");
 
       const embed = new EmbedBuilder()
         .setTitle(title)

@@ -24,4 +24,4 @@ function generateRandomId(length) {
   return code;
 }
 
-export default generateRandomId;
+module.exports = generateRandomId;
