@@ -8,7 +8,7 @@ const { connectToDB } = require("../database/mongodb/connect.js");
 async function start() {
   try {
     await client.login(process.env.TOKEN);
-    require("../handlers/register-commands.js")(client);
+    await registerSlashCommand(client);
     await loadEvents(client);
     await loadComponents(client);
     await connectToDB();

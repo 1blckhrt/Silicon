@@ -27,4 +27,4 @@ async function registerSlashCommand(client) {
   }
 }
 
-module.exports = registerSlashCommand;
+module.exports = { registerSlashCommand };
