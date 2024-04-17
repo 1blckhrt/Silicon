@@ -88,8 +88,8 @@ module.exports = {
       }
     } catch (error) {
       logger.error(error);
-      const embed = errorEmbed(client, interaction, error);
-      return await interaction.reply({ embeds: [embed], ephemeral: true });
+      const errEmbed = errorEmbed(client, interaction, error);
+      return await interaction.reply({ embeds: [errEmbed], ephemeral: true });
     }
   },
 };

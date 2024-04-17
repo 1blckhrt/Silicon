@@ -64,8 +64,8 @@ module.exports = {
       return await interaction.reply({ embeds: [embed], ephemeral: true });
     } catch (error) {
       logger.error(error);
-      const embed = errorEmbed(client, interaction, error);
-      return await interaction.reply({ embeds: [embed] });
+      const errEmbed = errorEmbed(client, interaction, error);
+      return await interaction.reply({ embeds: [errEmbed] });
     }
   },
 };

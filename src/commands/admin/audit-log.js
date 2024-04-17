@@ -26,6 +26,7 @@ module.exports = {
     ),
   async execute(interaction) {
     try {
+      const icon = `${client.user.displayAvatarURL()}`;
       const { channel, guildId, options } = interaction;
 
       const logChannel = options.getChannel("channel") || channel;
@@ -40,10 +41,22 @@ module.exports = {
           Channel: logChannel.id,
         });
 
-        embed
-          .setDescription("Data was successfully sent to the database.")
+        const embed = new EmbedBuilder()
+          .setTitle("✔️ Audit Log Setup")
+          .setDescription("Successfully setup the audit log.")
           .setColor("Green")
-          .setTimestamp();
+          .setThumbnail(`${icon}`)
+          .addFields({
+            name: "Channel",
+            value: `${logChannel.name}`,
+          })
+          .setTimestamp()
+          .setFooter({
+            text: `Requested by ${interaction.user.tag}`,
+            iconURL: interaction.user.displayAvatarURL(),
+          });
+
+        return await interaction.reply({ embeds: [embed], ephemeral: true });
       } else {
         // If data already exists, update it
         await auditLogSchema.save(
@@ -51,20 +64,27 @@ module.exports = {
           { Channel: logChannel.id }
         );
 
-        embed
-          .setDescription(
-            "Old data was successfully replaced with the new data."
-          )
-          .setColor("DarkButNotBlack")
-          .setTimestamp();
-      }
+        const embed2 = new EmbedBuilder()
+          .setTitle("✔️ Audit Log Setup")
+          .setDescription("Successfully setup the audit log.")
+          .setColor("Green")
+          .setThumbnail(`${icon}`)
+          .addFields({
+            name: "Channel",
+            value: `${logChannel.name}`,
+          })
+          .setTimestamp()
+          .setFooter({
+            text: `Requested by ${interaction.user.tag}`,
+            iconURL: interaction.user.displayAvatarURL(),
+          });
 
-      // Send reply with embed
-      return await interaction.reply({ embeds: [embed], ephemeral: true });
+        return await interaction.reply({ embeds: [embed2], ephemeral: true });
+      }
     } catch (error) {
       logger.error(error);
-      const embed = errorEmbed(interaction, error);
-      return await interaction.reply({ embeds: [embed], ephemeral: true });
+      const errEmbed = errorEmbed(interaction, error);
+      return await interaction.reply({ embeds: [errEmbed], ephemeral: true });
     }
   },
 };

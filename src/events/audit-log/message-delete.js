@@ -6,7 +6,6 @@ const {
 module.exports = {
   name: Events.MessageDelete,
   once: false,
-
   async execute(message, client) {
     const guildId = message.guild.id;
     if (message.author?.bot) return;
