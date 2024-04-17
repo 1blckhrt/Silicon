@@ -2,7 +2,8 @@ const { jsonDB } = require("../jsonDB.js");
 const { JsonSchema } = require("../src/classes/JsonSchema");
 
 const data = {
-  auditLogChannel: String,
+  Guild: String,
+  Channel: String,
 };
 
 const auditLogSchema = new JsonSchema({

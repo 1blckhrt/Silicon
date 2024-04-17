@@ -116,7 +116,7 @@ module.exports = {
       await interaction.reply({ embeds: [finishEmbed], ephemeral: true });
 
       const result = await auditLogSchema.findData({
-        guildId: interaction.guild.id,
+        Guild: interaction.guild.id,
       });
 
       if (result && result.auditLogChannel) {
