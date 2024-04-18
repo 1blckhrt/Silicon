@@ -1,4 +1,8 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const {
+  SlashCommandBuilder,
+  EmbedBuilder,
+  PermissionFlagsBits,
+} = require("discord.js");
 const ms = require("ms");
 const logger = require("../../util/logger.js");
 const errorEmbed = require("../../components/embeds/error.js");
@@ -33,7 +37,7 @@ module.exports = {
       if (
         user.id === interaction.user.id ||
         client.user.id === user.id ||
-        userMember.permissions.has(PermissionFlagsBits.KickMembers)
+        member.permissions.has(PermissionFlagsBits.KickMembers)
       ) {
         const embed = new EmbedBuilder()
           .setTitle("❌ Invalid User")
@@ -59,39 +63,6 @@ module.exports = {
           text: `Requested by ${interaction.user.tag}`,
           iconURL: interaction.user.displayAvatarURL(),
         });
-
-      const result = await auditLogSchema.findData({
-        guildId: interaction.guild.id,
-      });
-
-      if (result && result.auditLogChannel) {
-        const auditLog = await interaction.guild.channels.cache.get(
-          result.auditLogChannel
-        );
-
-        const icon = client.user.displayAvatarURL();
-
-        const auditEmbed = new EmbedBuilder()
-          .setTitle(":abc: Nickname Changed")
-          .addFields(
-            { name: "User", value: `${member}`, inline: true },
-            {
-              name: "Moderator",
-              value: interaction.user.username,
-              inline: true,
-            },
-            { name: "New Nickname", value: nickname, inline: true }
-          )
-          .setColor("Green")
-          .setTimestamp()
-          .setFooter({
-            text: `Nickname changed by ${interaction.user.tag}`,
-            iconURL: interaction.user.displayAvatarURL(),
-          })
-          .setThumbnail(icon);
-
-        await auditLog.send({ embeds: [auditEmbed] });
-      }
 
       await member.setNickname(nickname);
 
