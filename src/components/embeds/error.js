@@ -24,7 +24,7 @@ function errorEmbed(client, interaction, error) {
     .setThumbnail(`${icon}`)
     .setTimestamp()
     .setFooter({
-      text: `Requested by ${interaction.user.tag}`,
+      text: `Requested by ${interaction.user.username}`,
       iconURL: interaction.user.displayAvatarURL(),
     });
 

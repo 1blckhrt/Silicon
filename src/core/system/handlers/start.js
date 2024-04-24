@@ -12,7 +12,6 @@ async function start() {
     await loadEvents(client);
     await loadComponents(client);
     await connectToDB();
-    console.clear();
     logger.success(` Logged in as ${client.user.tag}!`);
   } catch (err) {
     console.log(err);

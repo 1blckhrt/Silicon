@@ -13,7 +13,7 @@ async function reply(interaction, emoji, description, ephemeral) {
     embeds: [
       new EmbedBuilder()
         .setDescription(`${emoji} | ${description}`)
-        .setColor("RANDOM") // Note: Changed "Random" to "RANDOM"
+        .setColor("Random") // Note: Changed "Random" to "RANDOM"
         .setTimestamp(),
     ],
     ephemeral: ephemeral,

@@ -83,7 +83,7 @@ module.exports = {
       }
     } catch (error) {
       logger.error(error);
-      const errEmbed = errorEmbed(interaction, error);
+      const errEmbed = errorEmbed(client, interaction, error);
       return await interaction.reply({ embeds: [errEmbed], ephemeral: true });
     }
   },
